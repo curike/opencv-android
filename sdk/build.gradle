@@ -88,27 +88,21 @@
 //   }
 //
 
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'maven-publish'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
-def openCVersionName = "4.8.0"
-def openCVersionCode = ((4 * 100 + 8) * 100 + 0) * 10 + 0
+def openCVersionName = "4.8.1"
+def openCVersionCode = ((4 * 100 + 8) * 100 + 1) * 10 + 0
 
-println "OpenCV: " + openCVersionName + " " + project.buildscript.sourceFile
-
-group = 'com.github.jitpack'
-version = '1.0'
+println "OpenCV: " +openCVersionName + " " + project.buildscript.sourceFile
 
 android {
     namespace 'org.opencv'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         minSdk 21
-        targetSdk 33
+        targetSdk 34
 
         versionCode openCVersionCode
         versionName openCVersionName
@@ -129,6 +123,7 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    
 
     buildTypes {
         debug {
@@ -168,17 +163,4 @@ android {
 }
 
 dependencies {
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-                groupId = 'com.github.ars-nomura'
-                artifactId = 'opencv-android'
-                version '4.8.0'
-            }
-        }
-    }
 }
