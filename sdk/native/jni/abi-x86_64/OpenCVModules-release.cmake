@@ -85,6 +85,16 @@ set_target_properties(tbb PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS tbb )
 list(APPEND _IMPORT_CHECK_FILES_FOR_tbb "${_IMPORT_PREFIX}/sdk/native/3rdparty/libs/x86_64/libtbb.a" )
 
+# Import target "ippiw" for configuration "Release"
+set_property(TARGET ippiw APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(ippiw PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "C"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/sdk/native/3rdparty/libs/x86_64/libippiw.a"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS ippiw )
+list(APPEND _IMPORT_CHECK_FILES_FOR_ippiw "${_IMPORT_PREFIX}/sdk/native/3rdparty/libs/x86_64/libippiw.a" )
+
 # Import target "libprotobuf" for configuration "Release"
 set_property(TARGET libprotobuf APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(libprotobuf PROPERTIES
@@ -94,16 +104,6 @@ set_target_properties(libprotobuf PROPERTIES
 
 list(APPEND _IMPORT_CHECK_TARGETS libprotobuf )
 list(APPEND _IMPORT_CHECK_FILES_FOR_libprotobuf "${_IMPORT_PREFIX}/sdk/native/3rdparty/libs/x86_64/liblibprotobuf.a" )
-
-# Import target "quirc" for configuration "Release"
-set_property(TARGET quirc APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(quirc PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "C"
-  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/sdk/native/3rdparty/libs/x86_64/libquirc.a"
-  )
-
-list(APPEND _IMPORT_CHECK_TARGETS quirc )
-list(APPEND _IMPORT_CHECK_FILES_FOR_quirc "${_IMPORT_PREFIX}/sdk/native/3rdparty/libs/x86_64/libquirc.a" )
 
 # Import target "ittnotify" for configuration "Release"
 set_property(TARGET ittnotify APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)

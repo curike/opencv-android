@@ -58,7 +58,7 @@
 //
 // - Use find_package() in app/CMakeLists.txt:
 //
-//   find_package(OpenCV 4.8 REQUIRED java)
+//   find_package(OpenCV 4.9 REQUIRED java)
 //   ...
 //   target_link_libraries(native-lib ${OpenCV_LIBRARIES})
 //
@@ -89,10 +89,11 @@
 //
 
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 apply plugin: 'kotlin-android'
 
-def openCVersionName = "4.8.1"
-def openCVersionCode = ((4 * 100 + 8) * 100 + 1) * 10 + 0
+def openCVersionName = "4.9.0"
+def openCVersionCode = ((4 * 100 + 9) * 100 + 0) * 10 + 0
 
 println "OpenCV: " +openCVersionName + " " + project.buildscript.sourceFile
 
@@ -104,8 +105,6 @@ android {
         minSdk 21
         targetSdk 34
 
-        versionCode openCVersionCode
-        versionName openCVersionName
 
         externalNativeBuild {
             cmake {
@@ -124,7 +123,6 @@ android {
         jvmTarget = '17'
     }
     
-
     buildTypes {
         debug {
             packagingOptions {
@@ -140,6 +138,18 @@ android {
         }
     }
 
+    buildFeatures {
+        aidl true
+        prefabPublishing true
+        buildConfig true
+    }
+    
+    prefab {
+        opencv_jni_shared {
+            headers "native/jni/include"
+        }
+    }
+
     sourceSets {
         main {
             jniLibs.srcDirs = ['native/libs']
@@ -150,15 +160,37 @@ android {
         }
     }
 
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+
     externalNativeBuild {
         cmake {
             path (project.projectDir.toString() + '/libcxx_helper/CMakeLists.txt')
         }
     }
+}
 
-    buildFeatures {
-        aidl true
-        buildConfig true
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'org.opencv'
+            artifactId = 'opencv'
+            version = '4.9.0'
+
+            afterEvaluate {
+               from components.release
+           }
+        }
+    }
+    repositories {
+        maven {
+            name = 'myrepo'
+            url = "${project.buildDir}/repo"
+        }
     }
 }
 
