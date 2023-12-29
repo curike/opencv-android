@@ -16,11 +16,11 @@ import org.opencv.utils.Converters;
 
 public class Core {
     // these constants are wrapped inside functions to prevent inlining
-    private static String getVersion() { return "4.8.1"; }
-    private static String getNativeLibraryName() { return "opencv_java481"; }
+    private static String getVersion() { return "4.9.0"; }
+    private static String getNativeLibraryName() { return "opencv_java490"; }
     private static int getVersionMajorJ() { return 4; }
-    private static int getVersionMinorJ() { return 8; }
-    private static int getVersionRevisionJ() { return 1; }
+    private static int getVersionMinorJ() { return 9; }
+    private static int getVersionRevisionJ() { return 0; }
     private static String getVersionStatusJ() { return ""; }
 
     public static final String VERSION = getVersion();
@@ -506,6 +506,9 @@ public class Core {
      * array, be it src1, src2 or both.
      * <b>Note:</b> Saturation is not applied when the output array has the depth CV_32S. You may even get
      * result of an incorrect sign in the case of overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code add(src,X)} means {@code add(src,(X,X,X,X))}.
+     * {@code add(src,(X,))} means {@code add(src,(X,0,0,0))}.
      * @param src1 first input array or a scalar.
      * @param src2 second input array or a scalar.
      * @param dst output array that has the same size and number of channels as the input array(s); the
@@ -555,6 +558,9 @@ public class Core {
      * array, be it src1, src2 or both.
      * <b>Note:</b> Saturation is not applied when the output array has the depth CV_32S. You may even get
      * result of an incorrect sign in the case of overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code add(src,X)} means {@code add(src,(X,X,X,X))}.
+     * {@code add(src,(X,))} means {@code add(src,(X,0,0,0))}.
      * @param src1 first input array or a scalar.
      * @param src2 second input array or a scalar.
      * @param dst output array that has the same size and number of channels as the input array(s); the
@@ -603,6 +609,9 @@ public class Core {
      * array, be it src1, src2 or both.
      * <b>Note:</b> Saturation is not applied when the output array has the depth CV_32S. You may even get
      * result of an incorrect sign in the case of overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code add(src,X)} means {@code add(src,(X,X,X,X))}.
+     * {@code add(src,(X,))} means {@code add(src,(X,0,0,0))}.
      * @param src1 first input array or a scalar.
      * @param src2 second input array or a scalar.
      * @param dst output array that has the same size and number of channels as the input array(s); the
@@ -659,6 +668,9 @@ public class Core {
      * case the output array will have the same depth as the input array, be it src1, src2 or both.
      * <b>Note:</b> Saturation is not applied when the output array has the depth CV_32S. You may even get
      * result of an incorrect sign in the case of overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code subtract(src,X)} means {@code subtract(src,(X,X,X,X))}.
+     * {@code subtract(src,(X,))} means {@code subtract(src,(X,0,0,0))}.
      * @param src1 first input array or a scalar.
      * @param src2 second input array or a scalar.
      * @param dst output array of the same size and the same number of channels as the input array.
@@ -711,6 +723,9 @@ public class Core {
      * case the output array will have the same depth as the input array, be it src1, src2 or both.
      * <b>Note:</b> Saturation is not applied when the output array has the depth CV_32S. You may even get
      * result of an incorrect sign in the case of overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code subtract(src,X)} means {@code subtract(src,(X,X,X,X))}.
+     * {@code subtract(src,(X,))} means {@code subtract(src,(X,0,0,0))}.
      * @param src1 first input array or a scalar.
      * @param src2 second input array or a scalar.
      * @param dst output array of the same size and the same number of channels as the input array.
@@ -762,6 +777,9 @@ public class Core {
      * case the output array will have the same depth as the input array, be it src1, src2 or both.
      * <b>Note:</b> Saturation is not applied when the output array has the depth CV_32S. You may even get
      * result of an incorrect sign in the case of overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code subtract(src,X)} means {@code subtract(src,(X,X,X,X))}.
+     * {@code subtract(src,(X,))} means {@code subtract(src,(X,0,0,0))}.
      * @param src1 first input array or a scalar.
      * @param src2 second input array or a scalar.
      * @param dst output array of the same size and the same number of channels as the input array.
@@ -791,6 +809,9 @@ public class Core {
      * <b>Note:</b> Saturation is not applied when the output array has the depth
      * CV_32S. You may even get result of an incorrect sign in the case of
      * overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code multiply(src,X)} means {@code multiply(src,(X,X,X,X))}.
+     * {@code multiply(src,(X,))} means {@code multiply(src,(X,0,0,0))}.
      * @param src1 first input array.
      * @param src2 second input array of the same size and the same type as src1.
      * @param dst output array of the same size and type as src1.
@@ -817,6 +838,9 @@ public class Core {
      * <b>Note:</b> Saturation is not applied when the output array has the depth
      * CV_32S. You may even get result of an incorrect sign in the case of
      * overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code multiply(src,X)} means {@code multiply(src,(X,X,X,X))}.
+     * {@code multiply(src,(X,))} means {@code multiply(src,(X,0,0,0))}.
      * @param src1 first input array.
      * @param src2 second input array of the same size and the same type as src1.
      * @param dst output array of the same size and type as src1.
@@ -842,6 +866,9 @@ public class Core {
      * <b>Note:</b> Saturation is not applied when the output array has the depth
      * CV_32S. You may even get result of an incorrect sign in the case of
      * overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code multiply(src,X)} means {@code multiply(src,(X,X,X,X))}.
+     * {@code multiply(src,(X,))} means {@code multiply(src,(X,0,0,0))}.
      * @param src1 first input array.
      * @param src2 second input array of the same size and the same type as src1.
      * @param dst output array of the same size and type as src1.
@@ -875,6 +902,9 @@ public class Core {
      *
      * <b>Note:</b> Saturation is not applied when the output array has the depth CV_32S. You may even get
      * result of an incorrect sign in the case of overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code divide(src,X)} means {@code divide(src,(X,X,X,X))}.
+     * {@code divide(src,(X,))} means {@code divide(src,(X,0,0,0))}.
      * @param src1 first input array.
      * @param src2 second input array of the same size and type as src1.
      * @param scale scalar factor.
@@ -905,6 +935,9 @@ public class Core {
      *
      * <b>Note:</b> Saturation is not applied when the output array has the depth CV_32S. You may even get
      * result of an incorrect sign in the case of overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code divide(src,X)} means {@code divide(src,(X,X,X,X))}.
+     * {@code divide(src,(X,))} means {@code divide(src,(X,0,0,0))}.
      * @param src1 first input array.
      * @param src2 second input array of the same size and type as src1.
      * @param scale scalar factor.
@@ -934,6 +967,9 @@ public class Core {
      *
      * <b>Note:</b> Saturation is not applied when the output array has the depth CV_32S. You may even get
      * result of an incorrect sign in the case of overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code divide(src,X)} means {@code divide(src,(X,X,X,X))}.
+     * {@code divide(src,(X,))} means {@code divide(src,(X,0,0,0))}.
      * @param src1 first input array.
      * @param src2 second input array of the same size and type as src1.
      * @param dst output array of the same size and type as src2.
@@ -2372,6 +2408,21 @@ public class Core {
 
 
     //
+    // C++:  void cv::broadcast(Mat src, Mat shape, Mat& dst)
+    //
+
+    /**
+     * Broadcast the given Mat to the given shape.
+     * @param src input array
+     * @param shape target shape. Should be a list of CV_32S numbers. Note that negative values are not supported.
+     * @param dst output array that has the given shape
+     */
+    public static void broadcast(Mat src, Mat shape, Mat dst) {
+        broadcast_0(src.nativeObj, shape.nativeObj, dst.nativeObj);
+    }
+
+
+    //
     // C++:  void cv::rotate(Mat src, Mat& dst, int rotateCode)
     //
 
@@ -2727,6 +2778,9 @@ public class Core {
      *     multi-channel arrays, each channel is processed independently.
      * <b>Note:</b> Saturation is not applied when the arrays have the depth CV_32S.
      * You may even get a negative value in the case of overflow.
+     * <b>Note:</b> (Python) Be careful to difference behaviour between src1/src2 are single number and they are tuple/array.
+     * {@code absdiff(src,X)} means {@code absdiff(src,(X,X,X,X))}.
+     * {@code absdiff(src,(X,))} means {@code absdiff(src,(X,0,0,0))}.
      * @param src1 first input array or a scalar.
      * @param src2 second input array or a scalar.
      * @param dst output array that has the same size and type as input arrays.
@@ -3239,7 +3293,7 @@ public class Core {
     //
 
     /**
-     * converts NaNs to the given number
+     * Replaces NaNs by given number
      * @param a input/output matrix (CV_32F type).
      * @param val value to convert the NaNs
      */
@@ -3248,7 +3302,7 @@ public class Core {
     }
 
     /**
-     * converts NaNs to the given number
+     * Replaces NaNs by given number
      * @param a input/output matrix (CV_32F type).
      */
     public static void patchNaNs(Mat a) {
@@ -6073,6 +6127,9 @@ public static MinMaxLocResult minMaxLoc(Mat src) {
 
     // C++:  void cv::flipND(Mat src, Mat& dst, int axis)
     private static native void flipND_0(long src_nativeObj, long dst_nativeObj, int axis);
+
+    // C++:  void cv::broadcast(Mat src, Mat shape, Mat& dst)
+    private static native void broadcast_0(long src_nativeObj, long shape_nativeObj, long dst_nativeObj);
 
     // C++:  void cv::rotate(Mat src, Mat& dst, int rotateCode)
     private static native void rotate_0(long src_nativeObj, long dst_nativeObj, int rotateCode);

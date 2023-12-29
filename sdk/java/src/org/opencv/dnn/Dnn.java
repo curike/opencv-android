@@ -373,14 +373,14 @@ public class Dnn {
      * * {@code *.pb} (TensorFlow, https://www.tensorflow.org/)
      * * {@code *.t7} | {@code *.net} (Torch, http://torch.ch/)
      * * {@code *.weights} (Darknet, https://pjreddie.com/darknet/)
-     * * {@code *.bin} (DLDT, https://software.intel.com/openvino-toolkit)
+     * * {@code *.bin} | {@code *.onnx} (OpenVINO, https://software.intel.com/openvino-toolkit)
      * * {@code *.onnx} (ONNX, https://onnx.ai/)
      * @param config Text file contains network configuration. It could be a
      * file with the following extensions:
      * * {@code *.prototxt} (Caffe, http://caffe.berkeleyvision.org/)
      * * {@code *.pbtxt} (TensorFlow, https://www.tensorflow.org/)
      * * {@code *.cfg} (Darknet, https://pjreddie.com/darknet/)
-     * * {@code *.xml} (DLDT, https://software.intel.com/openvino-toolkit)
+     * * {@code *.xml} (OpenVINO, https://software.intel.com/openvino-toolkit)
      * @param framework Explicit framework name tag to determine a format.
      * @return Net object.
      *
@@ -401,14 +401,14 @@ public class Dnn {
      * * {@code *.pb} (TensorFlow, https://www.tensorflow.org/)
      * * {@code *.t7} | {@code *.net} (Torch, http://torch.ch/)
      * * {@code *.weights} (Darknet, https://pjreddie.com/darknet/)
-     * * {@code *.bin} (DLDT, https://software.intel.com/openvino-toolkit)
+     * * {@code *.bin} | {@code *.onnx} (OpenVINO, https://software.intel.com/openvino-toolkit)
      * * {@code *.onnx} (ONNX, https://onnx.ai/)
      * @param config Text file contains network configuration. It could be a
      * file with the following extensions:
      * * {@code *.prototxt} (Caffe, http://caffe.berkeleyvision.org/)
      * * {@code *.pbtxt} (TensorFlow, https://www.tensorflow.org/)
      * * {@code *.cfg} (Darknet, https://pjreddie.com/darknet/)
-     * * {@code *.xml} (DLDT, https://software.intel.com/openvino-toolkit)
+     * * {@code *.xml} (OpenVINO, https://software.intel.com/openvino-toolkit)
      * @return Net object.
      *
      * This function automatically detects an origin framework of trained model
@@ -428,13 +428,13 @@ public class Dnn {
      * * {@code *.pb} (TensorFlow, https://www.tensorflow.org/)
      * * {@code *.t7} | {@code *.net} (Torch, http://torch.ch/)
      * * {@code *.weights} (Darknet, https://pjreddie.com/darknet/)
-     * * {@code *.bin} (DLDT, https://software.intel.com/openvino-toolkit)
+     * * {@code *.bin} | {@code *.onnx} (OpenVINO, https://software.intel.com/openvino-toolkit)
      * * {@code *.onnx} (ONNX, https://onnx.ai/)
      * file with the following extensions:
      * * {@code *.prototxt} (Caffe, http://caffe.berkeleyvision.org/)
      * * {@code *.pbtxt} (TensorFlow, https://www.tensorflow.org/)
      * * {@code *.cfg} (Darknet, https://pjreddie.com/darknet/)
-     * * {@code *.xml} (DLDT, https://software.intel.com/openvino-toolkit)
+     * * {@code *.xml} (OpenVINO, https://software.intel.com/openvino-toolkit)
      * @return Net object.
      *
      * This function automatically detects an origin framework of trained model
@@ -507,7 +507,7 @@ public class Dnn {
 
 
     //
-    // C++:  Net cv::dnn::readNetFromModelOptimizer(String xml, String bin)
+    // C++:  Net cv::dnn::readNetFromModelOptimizer(String xml, String bin = "")
     //
 
     /**
@@ -520,6 +520,17 @@ public class Dnn {
      */
     public static Net readNetFromModelOptimizer(String xml, String bin) {
         return new Net(readNetFromModelOptimizer_0(xml, bin));
+    }
+
+    /**
+     * Load a network from Intel's Model Optimizer intermediate representation.
+     * @param xml XML configuration file with network's topology.
+     * @return Net object.
+     * Networks imported from Intel's Model Optimizer are launched in Intel's Inference Engine
+     * backend.
+     */
+    public static Net readNetFromModelOptimizer(String xml) {
+        return new Net(readNetFromModelOptimizer_1(xml));
     }
 
 
@@ -538,7 +549,7 @@ public class Dnn {
     public static Net readNetFromModelOptimizer(MatOfByte bufferModelConfig, MatOfByte bufferWeights) {
         Mat bufferModelConfig_mat = bufferModelConfig;
         Mat bufferWeights_mat = bufferWeights;
-        return new Net(readNetFromModelOptimizer_1(bufferModelConfig_mat.nativeObj, bufferWeights_mat.nativeObj));
+        return new Net(readNetFromModelOptimizer_2(bufferModelConfig_mat.nativeObj, bufferWeights_mat.nativeObj));
     }
 
 
@@ -1435,11 +1446,12 @@ public class Dnn {
     private static native long readTorchBlob_0(String filename, boolean isBinary);
     private static native long readTorchBlob_1(String filename);
 
-    // C++:  Net cv::dnn::readNetFromModelOptimizer(String xml, String bin)
+    // C++:  Net cv::dnn::readNetFromModelOptimizer(String xml, String bin = "")
     private static native long readNetFromModelOptimizer_0(String xml, String bin);
+    private static native long readNetFromModelOptimizer_1(String xml);
 
     // C++:  Net cv::dnn::readNetFromModelOptimizer(vector_uchar bufferModelConfig, vector_uchar bufferWeights)
-    private static native long readNetFromModelOptimizer_1(long bufferModelConfig_mat_nativeObj, long bufferWeights_mat_nativeObj);
+    private static native long readNetFromModelOptimizer_2(long bufferModelConfig_mat_nativeObj, long bufferWeights_mat_nativeObj);
 
     // C++:  Net cv::dnn::readNetFromONNX(String onnxFile)
     private static native long readNetFromONNX_0(String onnxFile);

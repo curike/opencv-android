@@ -7,14 +7,18 @@ import org.opencv.core.Mat;
 
 // C++: class Dictionary
 /**
- * Dictionary/Set of markers, it contains the inner codification
+ * Dictionary is a set of unique ArUco markers of the same size
  *
- * BytesList contains the marker codewords where:
+ * {@code bytesList} storing as 2-dimensions Mat with 4-th channels (CV_8UC4 type was used) and contains the marker codewords where:
  * - bytesList.rows is the dictionary size
- * - each marker is encoded using {@code nbytes = ceil(markerSize*markerSize/8.)}
+ * - each marker is encoded using {@code nbytes = ceil(markerSize*markerSize/8.)} bytes
  * - each row contains all 4 rotations of the marker, so its length is {@code 4*nbytes}
- *
- * {@code bytesList.ptr(i)[k*nbytes + j]} is then the j-th byte of i-th marker, in its k-th rotation.
+ * - the byte order in the bytesList[i] row:
+ * {@code //bytes without rotation/bytes with rotation 1/bytes with rotation 2/bytes with rotation 3//}
+ * So {@code bytesList.ptr(i)[k*nbytes + j]} is the j-th byte of i-th marker, in its k-th rotation.
+ * <b>Note:</b> Python bindings generate matrix with shape of bytesList {@code dictionary_size x nbytes x 4},
+ * but it should be indexed like C++ version. Python example for j-th byte of i-th marker, in its k-th rotation:
+ * {@code aruco_dict.bytesList[id].ravel()[k*nbytes + j]}
  */
 public class Dictionary {
 
@@ -39,10 +43,23 @@ public class Dictionary {
     // C++:   cv::aruco::Dictionary::Dictionary(Mat bytesList, int _markerSize, int maxcorr = 0)
     //
 
+    /**
+     * Basic ArUco dictionary constructor
+     *
+     * @param bytesList bits for all ArUco markers in dictionary see memory layout in the class description
+     * @param _markerSize ArUco marker size in units
+     * @param maxcorr maximum number of bits that can be corrected
+     */
     public Dictionary(Mat bytesList, int _markerSize, int maxcorr) {
         nativeObj = Dictionary_1(bytesList.nativeObj, _markerSize, maxcorr);
     }
 
+    /**
+     * Basic ArUco dictionary constructor
+     *
+     * @param bytesList bits for all ArUco markers in dictionary see memory layout in the class description
+     * @param _markerSize ArUco marker size in units
+     */
     public Dictionary(Mat bytesList, int _markerSize) {
         nativeObj = Dictionary_2(bytesList.nativeObj, _markerSize);
     }
@@ -69,7 +86,7 @@ public class Dictionary {
     /**
      * Given a matrix of bits. Returns whether if marker is identified or not.
      *
-     * It returns by reference the correct id (if any) and the correct rotation
+     * Returns reference to the marker id in the dictionary (if any) and its rotation.
      * @param onlyBits automatically generated
      * @param idx automatically generated
      * @param rotation automatically generated
@@ -91,9 +108,9 @@ public class Dictionary {
     //
 
     /**
-     * Returns the distance of the input bits to the specific id.
+     * Returns Hamming distance of the input bits to the specific id.
      *
-     * If allRotations is true, the four posible bits rotation are considered
+     * If {@code allRotations} flag is set, the four posible marker rotations are considered
      * @param bits automatically generated
      * @param id automatically generated
      * @param allRotations automatically generated
@@ -104,9 +121,9 @@ public class Dictionary {
     }
 
     /**
-     * Returns the distance of the input bits to the specific id.
+     * Returns Hamming distance of the input bits to the specific id.
      *
-     * If allRotations is true, the four posible bits rotation are considered
+     * If {@code allRotations} flag is set, the four posible marker rotations are considered
      * @param bits automatically generated
      * @param id automatically generated
      * @return automatically generated
@@ -147,7 +164,7 @@ public class Dictionary {
     //
 
     /**
-     * Transform matrix of bits to list of bytes in the 4 rotations
+     * Transform matrix of bits to list of bytes with 4 marker rotations
      * @param bits automatically generated
      * @return automatically generated
      */
