@@ -41,7 +41,7 @@ allprojects {
 #### 2. then, add the library to your module `build.gradle`
 
 ```groovy
-implementation 'com.github.ars-nomura:opencv-android:4.8.0'
+implementation 'com.github.ars-nomura:opencv-android:4.9.0'
 ```
 
 ### Kotlin DSL:
@@ -62,7 +62,7 @@ dependencyResolutionManagement {
 #### 2. then, add the library to your module `build.gradle.kts`
 
 ```kotlin
-implementation("com.github.ars-nomura:opencv-android:4.8.0")
+implementation("com.github.ars-nomura:opencv-android:4.9.0")
 ```
 
 [opencv]: https://opencv.org/
