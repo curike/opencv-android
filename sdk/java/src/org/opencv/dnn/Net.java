@@ -422,9 +422,6 @@ public class Net {
      * Ask network to use specific computation backend where it supported.
      * @param backendId backend identifier.
      * SEE: Backend
-     *
-     * If OpenCV is compiled with Intel's Inference Engine library, DNN_BACKEND_DEFAULT
-     * means DNN_BACKEND_INFERENCE_ENGINE. Otherwise it equals to DNN_BACKEND_OPENCV.
      */
     public void setPreferableBackend(int backendId) {
         setPreferableBackend_0(nativeObj, backendId);

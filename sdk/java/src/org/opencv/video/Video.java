@@ -392,7 +392,7 @@ public class Video {
      * The function implements a sparse iterative version of the Lucas-Kanade optical flow in pyramids. See
      * CITE: Bouguet00 . The function is parallelized with the TBB library.
      *
-     * <b>Note:</b>
+     * <b>Note:</b> Some examples:
      *
      * <ul>
      *   <li>
@@ -461,7 +461,7 @@ public class Video {
      * The function implements a sparse iterative version of the Lucas-Kanade optical flow in pyramids. See
      * CITE: Bouguet00 . The function is parallelized with the TBB library.
      *
-     * <b>Note:</b>
+     * <b>Note:</b> Some examples:
      *
      * <ul>
      *   <li>
@@ -529,7 +529,7 @@ public class Video {
      * The function implements a sparse iterative version of the Lucas-Kanade optical flow in pyramids. See
      * CITE: Bouguet00 . The function is parallelized with the TBB library.
      *
-     * <b>Note:</b>
+     * <b>Note:</b> Some examples:
      *
      * <ul>
      *   <li>
@@ -596,7 +596,7 @@ public class Video {
      * The function implements a sparse iterative version of the Lucas-Kanade optical flow in pyramids. See
      * CITE: Bouguet00 . The function is parallelized with the TBB library.
      *
-     * <b>Note:</b>
+     * <b>Note:</b> Some examples:
      *
      * <ul>
      *   <li>
@@ -662,7 +662,7 @@ public class Video {
      * The function implements a sparse iterative version of the Lucas-Kanade optical flow in pyramids. See
      * CITE: Bouguet00 . The function is parallelized with the TBB library.
      *
-     * <b>Note:</b>
+     * <b>Note:</b> Some examples:
      *
      * <ul>
      *   <li>
@@ -727,7 +727,7 @@ public class Video {
      * The function implements a sparse iterative version of the Lucas-Kanade optical flow in pyramids. See
      * CITE: Bouguet00 . The function is parallelized with the TBB library.
      *
-     * <b>Note:</b>
+     * <b>Note:</b> Some examples:
      *
      * <ul>
      *   <li>
@@ -795,7 +795,7 @@ public class Video {
      *
      * \(\texttt{prev} (y,x)  \sim \texttt{next} ( y + \texttt{flow} (y,x)[1],  x + \texttt{flow} (y,x)[0])\)
      *
-     * <b>Note:</b>
+     * <b>Note:</b> Some examples:
      *
      * <ul>
      *   <li>

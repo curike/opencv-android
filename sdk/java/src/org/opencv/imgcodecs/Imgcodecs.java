@@ -8,6 +8,7 @@ import java.util.List;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.core.MatOfInt;
+import org.opencv.core.Range;
 import org.opencv.utils.Converters;
 
 // C++: class Imgcodecs
@@ -634,8 +635,31 @@ public class Imgcodecs {
 
 
     //
-    // C++:  bool cv::imdecodemulti(Mat buf, int flags, vector_Mat& mats)
+    // C++:  bool cv::imdecodemulti(Mat buf, int flags, vector_Mat& mats, Range range = Range::all())
     //
+
+    /**
+     * Reads a multi-page image from a buffer in memory.
+     *
+     * The function imdecodemulti reads a multi-page image from the specified buffer in the memory. If the buffer is too short or
+     * contains invalid data, the function returns false.
+     *
+     * See cv::imreadmulti for the list of supported formats and flags description.
+     *
+     * <b>Note:</b> In the case of color images, the decoded images will have the channels stored in <b>B G R</b> order.
+     * @param buf Input array or vector of bytes.
+     * @param flags The same flags as in cv::imread, see cv::ImreadModes.
+     * @param mats A vector of Mat objects holding each page, if more than one.
+     * @param range A continuous selection of pages.
+     * @return automatically generated
+     */
+    public static boolean imdecodemulti(Mat buf, int flags, List<Mat> mats, Range range) {
+        Mat mats_mat = new Mat();
+        boolean retVal = imdecodemulti_0(buf.nativeObj, flags, mats_mat.nativeObj, range.start, range.end);
+        Converters.Mat_to_vector_Mat(mats_mat, mats);
+        mats_mat.release();
+        return retVal;
+    }
 
     /**
      * Reads a multi-page image from a buffer in memory.
@@ -653,7 +677,7 @@ public class Imgcodecs {
      */
     public static boolean imdecodemulti(Mat buf, int flags, List<Mat> mats) {
         Mat mats_mat = new Mat();
-        boolean retVal = imdecodemulti_0(buf.nativeObj, flags, mats_mat.nativeObj);
+        boolean retVal = imdecodemulti_1(buf.nativeObj, flags, mats_mat.nativeObj);
         Converters.Mat_to_vector_Mat(mats_mat, mats);
         mats_mat.release();
         return retVal;
@@ -758,8 +782,9 @@ public class Imgcodecs {
     // C++:  Mat cv::imdecode(Mat buf, int flags)
     private static native long imdecode_0(long buf_nativeObj, int flags);
 
-    // C++:  bool cv::imdecodemulti(Mat buf, int flags, vector_Mat& mats)
-    private static native boolean imdecodemulti_0(long buf_nativeObj, int flags, long mats_mat_nativeObj);
+    // C++:  bool cv::imdecodemulti(Mat buf, int flags, vector_Mat& mats, Range range = Range::all())
+    private static native boolean imdecodemulti_0(long buf_nativeObj, int flags, long mats_mat_nativeObj, int range_start, int range_end);
+    private static native boolean imdecodemulti_1(long buf_nativeObj, int flags, long mats_mat_nativeObj);
 
     // C++:  bool cv::imencode(String ext, Mat img, vector_uchar& buf, vector_int params = std::vector<int>())
     private static native boolean imencode_0(String ext, long img_nativeObj, long buf_mat_nativeObj, long params_mat_nativeObj);

@@ -49,6 +49,7 @@ public class Calib3d {
             CALIB_CB_ACCURACY = 32,
             CALIB_CB_LARGER = 64,
             CALIB_CB_MARKER = 128,
+            CALIB_CB_PLAIN = 256,
             CALIB_CB_SYMMETRIC_GRID = 1,
             CALIB_CB_ASYMMETRIC_GRID = 2,
             CALIB_CB_CLUSTERING = 4,
@@ -749,7 +750,7 @@ public class Calib3d {
      * It optionally returns three rotation matrices, one for each axis, and the three Euler angles in
      * degrees (as the return value) that could be used in OpenGL. Note, there is always more than one
      * sequence of rotations about the three principal axes that results in the same orientation of an
-     * object, e.g. see CITE: Slabaugh . Returned tree rotation matrices and corresponding three Euler angles
+     * object, e.g. see CITE: Slabaugh . Returned three rotation matrices and corresponding three Euler angles
      * are only one of the possible solutions.
      * @return automatically generated
      */
@@ -773,7 +774,7 @@ public class Calib3d {
      * It optionally returns three rotation matrices, one for each axis, and the three Euler angles in
      * degrees (as the return value) that could be used in OpenGL. Note, there is always more than one
      * sequence of rotations about the three principal axes that results in the same orientation of an
-     * object, e.g. see CITE: Slabaugh . Returned tree rotation matrices and corresponding three Euler angles
+     * object, e.g. see CITE: Slabaugh . Returned three rotation matrices and corresponding three Euler angles
      * are only one of the possible solutions.
      * @return automatically generated
      */
@@ -796,7 +797,7 @@ public class Calib3d {
      * It optionally returns three rotation matrices, one for each axis, and the three Euler angles in
      * degrees (as the return value) that could be used in OpenGL. Note, there is always more than one
      * sequence of rotations about the three principal axes that results in the same orientation of an
-     * object, e.g. see CITE: Slabaugh . Returned tree rotation matrices and corresponding three Euler angles
+     * object, e.g. see CITE: Slabaugh . Returned three rotation matrices and corresponding three Euler angles
      * are only one of the possible solutions.
      * @return automatically generated
      */
@@ -818,7 +819,7 @@ public class Calib3d {
      * It optionally returns three rotation matrices, one for each axis, and the three Euler angles in
      * degrees (as the return value) that could be used in OpenGL. Note, there is always more than one
      * sequence of rotations about the three principal axes that results in the same orientation of an
-     * object, e.g. see CITE: Slabaugh . Returned tree rotation matrices and corresponding three Euler angles
+     * object, e.g. see CITE: Slabaugh . Returned three rotation matrices and corresponding three Euler angles
      * are only one of the possible solutions.
      * @return automatically generated
      */
@@ -850,7 +851,7 @@ public class Calib3d {
      * It optionally returns three rotation matrices, one for each axis, and three Euler angles that could
      * be used in OpenGL. Note, there is always more than one sequence of rotations about the three
      * principal axes that results in the same orientation of an object, e.g. see CITE: Slabaugh . Returned
-     * tree rotation matrices and corresponding three Euler angles are only one of the possible solutions.
+     * three rotation matrices and corresponding three Euler angles are only one of the possible solutions.
      *
      * The function is based on #RQDecomp3x3 .
      */
@@ -876,7 +877,7 @@ public class Calib3d {
      * It optionally returns three rotation matrices, one for each axis, and three Euler angles that could
      * be used in OpenGL. Note, there is always more than one sequence of rotations about the three
      * principal axes that results in the same orientation of an object, e.g. see CITE: Slabaugh . Returned
-     * tree rotation matrices and corresponding three Euler angles are only one of the possible solutions.
+     * three rotation matrices and corresponding three Euler angles are only one of the possible solutions.
      *
      * The function is based on #RQDecomp3x3 .
      */
@@ -901,7 +902,7 @@ public class Calib3d {
      * It optionally returns three rotation matrices, one for each axis, and three Euler angles that could
      * be used in OpenGL. Note, there is always more than one sequence of rotations about the three
      * principal axes that results in the same orientation of an object, e.g. see CITE: Slabaugh . Returned
-     * tree rotation matrices and corresponding three Euler angles are only one of the possible solutions.
+     * three rotation matrices and corresponding three Euler angles are only one of the possible solutions.
      *
      * The function is based on #RQDecomp3x3 .
      */
@@ -925,7 +926,7 @@ public class Calib3d {
      * It optionally returns three rotation matrices, one for each axis, and three Euler angles that could
      * be used in OpenGL. Note, there is always more than one sequence of rotations about the three
      * principal axes that results in the same orientation of an object, e.g. see CITE: Slabaugh . Returned
-     * tree rotation matrices and corresponding three Euler angles are only one of the possible solutions.
+     * three rotation matrices and corresponding three Euler angles are only one of the possible solutions.
      *
      * The function is based on #RQDecomp3x3 .
      */
@@ -948,7 +949,7 @@ public class Calib3d {
      * It optionally returns three rotation matrices, one for each axis, and three Euler angles that could
      * be used in OpenGL. Note, there is always more than one sequence of rotations about the three
      * principal axes that results in the same orientation of an object, e.g. see CITE: Slabaugh . Returned
-     * tree rotation matrices and corresponding three Euler angles are only one of the possible solutions.
+     * three rotation matrices and corresponding three Euler angles are only one of the possible solutions.
      *
      * The function is based on #RQDecomp3x3 .
      */
@@ -3334,6 +3335,12 @@ public class Calib3d {
      * and shortcut the call if none is found. This can drastically speed up the call in the
      * degenerate condition when no chessboard is observed.
      *   </li>
+     *   <li>
+     *    REF: CALIB_CB_PLAIN All other flags are ignored. The input image is taken as is.
+     * No image processing is done to improve to find the checkerboard. This has the effect of speeding up the
+     * execution of the function but could lead to not recognizing the checkerboard if the image
+     * is not previously binarized in the appropriate manner.
+     *   </li>
      * </ul>
      *
      * The function attempts to determine whether the input image is a view of the chessboard pattern and
@@ -3400,6 +3407,12 @@ public class Calib3d {
      *    REF: CALIB_CB_FAST_CHECK Run a fast check on the image that looks for chessboard corners,
      * and shortcut the call if none is found. This can drastically speed up the call in the
      * degenerate condition when no chessboard is observed.
+     *   </li>
+     *   <li>
+     *    REF: CALIB_CB_PLAIN All other flags are ignored. The input image is taken as is.
+     * No image processing is done to improve to find the checkerboard. This has the effect of speeding up the
+     * execution of the function but could lead to not recognizing the checkerboard if the image
+     * is not previously binarized in the appropriate manner.
      *   </li>
      * </ul>
      *
@@ -3929,6 +3942,10 @@ public class Calib3d {
      *     \(f_y\) (ratios of 10:1 or more)), then you are probably using patternSize=cvSize(rows,cols)
      *     instead of using patternSize=cvSize(cols,rows) in REF: findChessboardCorners.
      *
+     * <b>Note:</b>
+     *     The function may throw exceptions, if unsupported combination of parameters is provided or
+     *     the system is underconstrained.
+     *
      * SEE:
      *    calibrateCameraRO, findChessboardCorners, solvePnP, initCameraMatrix2D, stereoCalibrate,
      *    undistort
@@ -4094,6 +4111,10 @@ public class Calib3d {
      *     \(f_y\) (ratios of 10:1 or more)), then you are probably using patternSize=cvSize(rows,cols)
      *     instead of using patternSize=cvSize(cols,rows) in REF: findChessboardCorners.
      *
+     * <b>Note:</b>
+     *     The function may throw exceptions, if unsupported combination of parameters is provided or
+     *     the system is underconstrained.
+     *
      * SEE:
      *    calibrateCameraRO, findChessboardCorners, solvePnP, initCameraMatrix2D, stereoCalibrate,
      *    undistort
@@ -4257,6 +4278,10 @@ public class Calib3d {
      *     \(c_y\) very far from the image center, and/or large differences between \(f_x\) and
      *     \(f_y\) (ratios of 10:1 or more)), then you are probably using patternSize=cvSize(rows,cols)
      *     instead of using patternSize=cvSize(cols,rows) in REF: findChessboardCorners.
+     *
+     * <b>Note:</b>
+     *     The function may throw exceptions, if unsupported combination of parameters is provided or
+     *     the system is underconstrained.
      *
      * SEE:
      *    calibrateCameraRO, findChessboardCorners, solvePnP, initCameraMatrix2D, stereoCalibrate,

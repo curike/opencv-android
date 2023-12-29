@@ -375,7 +375,35 @@ public class Imgproc {
             COLOR_BayerGB2RGBA = COLOR_BayerGR2BGRA,
             COLOR_BayerRG2RGBA = COLOR_BayerBG2BGRA,
             COLOR_BayerGR2RGBA = COLOR_BayerGB2BGRA,
-            COLOR_COLORCVT_MAX = 143;
+            COLOR_RGB2YUV_UYVY = 143,
+            COLOR_BGR2YUV_UYVY = 144,
+            COLOR_RGB2YUV_Y422 = COLOR_RGB2YUV_UYVY,
+            COLOR_BGR2YUV_Y422 = COLOR_BGR2YUV_UYVY,
+            COLOR_RGB2YUV_UYNV = COLOR_RGB2YUV_UYVY,
+            COLOR_BGR2YUV_UYNV = COLOR_BGR2YUV_UYVY,
+            COLOR_RGBA2YUV_UYVY = 145,
+            COLOR_BGRA2YUV_UYVY = 146,
+            COLOR_RGBA2YUV_Y422 = COLOR_RGBA2YUV_UYVY,
+            COLOR_BGRA2YUV_Y422 = COLOR_BGRA2YUV_UYVY,
+            COLOR_RGBA2YUV_UYNV = COLOR_RGBA2YUV_UYVY,
+            COLOR_BGRA2YUV_UYNV = COLOR_BGRA2YUV_UYVY,
+            COLOR_RGB2YUV_YUY2 = 147,
+            COLOR_BGR2YUV_YUY2 = 148,
+            COLOR_RGB2YUV_YVYU = 149,
+            COLOR_BGR2YUV_YVYU = 150,
+            COLOR_RGB2YUV_YUYV = COLOR_RGB2YUV_YUY2,
+            COLOR_BGR2YUV_YUYV = COLOR_BGR2YUV_YUY2,
+            COLOR_RGB2YUV_YUNV = COLOR_RGB2YUV_YUY2,
+            COLOR_BGR2YUV_YUNV = COLOR_BGR2YUV_YUY2,
+            COLOR_RGBA2YUV_YUY2 = 151,
+            COLOR_BGRA2YUV_YUY2 = 152,
+            COLOR_RGBA2YUV_YVYU = 153,
+            COLOR_BGRA2YUV_YVYU = 154,
+            COLOR_RGBA2YUV_YUYV = COLOR_RGBA2YUV_YUY2,
+            COLOR_BGRA2YUV_YUYV = COLOR_BGRA2YUV_YUY2,
+            COLOR_RGBA2YUV_YUNV = COLOR_RGBA2YUV_YUY2,
+            COLOR_BGRA2YUV_YUNV = COLOR_BGRA2YUV_YUY2,
+            COLOR_COLORCVT_MAX = 155;
 
 
     // C++: enum ColormapTypes (cv.ColormapTypes)
@@ -3444,7 +3472,7 @@ public class Imgproc {
      * @param param1 First method-specific parameter. In case of #HOUGH_GRADIENT and #HOUGH_GRADIENT_ALT,
      * it is the higher threshold of the two passed to the Canny edge detector (the lower one is twice smaller).
      * Note that #HOUGH_GRADIENT_ALT uses #Scharr algorithm to compute image derivatives, so the threshold value
-     * shough normally be higher, such as 300 or normally exposed and contrasty images.
+     * should normally be higher, such as 300 or normally exposed and contrasty images.
      * @param param2 Second method-specific parameter. In case of #HOUGH_GRADIENT, it is the
      * accumulator threshold for the circle centers at the detection stage. The smaller it is, the more
      * false circles may be detected. Circles, corresponding to the larger accumulator values, will be
@@ -3492,7 +3520,7 @@ public class Imgproc {
      * @param param1 First method-specific parameter. In case of #HOUGH_GRADIENT and #HOUGH_GRADIENT_ALT,
      * it is the higher threshold of the two passed to the Canny edge detector (the lower one is twice smaller).
      * Note that #HOUGH_GRADIENT_ALT uses #Scharr algorithm to compute image derivatives, so the threshold value
-     * shough normally be higher, such as 300 or normally exposed and contrasty images.
+     * should normally be higher, such as 300 or normally exposed and contrasty images.
      * @param param2 Second method-specific parameter. In case of #HOUGH_GRADIENT, it is the
      * accumulator threshold for the circle centers at the detection stage. The smaller it is, the more
      * false circles may be detected. Circles, corresponding to the larger accumulator values, will be
@@ -3539,7 +3567,7 @@ public class Imgproc {
      * @param param1 First method-specific parameter. In case of #HOUGH_GRADIENT and #HOUGH_GRADIENT_ALT,
      * it is the higher threshold of the two passed to the Canny edge detector (the lower one is twice smaller).
      * Note that #HOUGH_GRADIENT_ALT uses #Scharr algorithm to compute image derivatives, so the threshold value
-     * shough normally be higher, such as 300 or normally exposed and contrasty images.
+     * should normally be higher, such as 300 or normally exposed and contrasty images.
      * @param param2 Second method-specific parameter. In case of #HOUGH_GRADIENT, it is the
      * accumulator threshold for the circle centers at the detection stage. The smaller it is, the more
      * false circles may be detected. Circles, corresponding to the larger accumulator values, will be
@@ -3585,7 +3613,7 @@ public class Imgproc {
      * @param param1 First method-specific parameter. In case of #HOUGH_GRADIENT and #HOUGH_GRADIENT_ALT,
      * it is the higher threshold of the two passed to the Canny edge detector (the lower one is twice smaller).
      * Note that #HOUGH_GRADIENT_ALT uses #Scharr algorithm to compute image derivatives, so the threshold value
-     * shough normally be higher, such as 300 or normally exposed and contrasty images.
+     * should normally be higher, such as 300 or normally exposed and contrasty images.
      * accumulator threshold for the circle centers at the detection stage. The smaller it is, the more
      * false circles may be detected. Circles, corresponding to the larger accumulator values, will be
      * returned first. In the case of #HOUGH_GRADIENT_ALT algorithm, this is the circle "perfectness" measure.
@@ -3629,7 +3657,7 @@ public class Imgproc {
      * too large, some circles may be missed.
      * it is the higher threshold of the two passed to the Canny edge detector (the lower one is twice smaller).
      * Note that #HOUGH_GRADIENT_ALT uses #Scharr algorithm to compute image derivatives, so the threshold value
-     * shough normally be higher, such as 300 or normally exposed and contrasty images.
+     * should normally be higher, such as 300 or normally exposed and contrasty images.
      * accumulator threshold for the circle centers at the detection stage. The smaller it is, the more
      * false circles may be detected. Circles, corresponding to the larger accumulator values, will be
      * returned first. In the case of #HOUGH_GRADIENT_ALT algorithm, this is the circle "perfectness" measure.
@@ -7135,6 +7163,10 @@ public class Imgproc {
      *
      * This function only supports YUV420 to RGB conversion as of now.
      *
+     * @param src1 8-bit image (#CV_8U) of the Y plane.
+     * @param src2 image containing interleaved U/V plane.
+     * @param dst output image.
+     * @param code Specifies the type of conversion. It can take any of the following values:
      * <ul>
      *   <li>
      *  #COLOR_YUV2BGR_NV12
@@ -7161,10 +7193,6 @@ public class Imgproc {
      *  #COLOR_YUV2RGBA_NV21
      *   </li>
      * </ul>
-     * @param src1 automatically generated
-     * @param src2 automatically generated
-     * @param dst automatically generated
-     * @param code automatically generated
      */
     public static void cvtColorTwoPlane(Mat src1, Mat src2, Mat dst, int code) {
         cvtColorTwoPlane_0(src1.nativeObj, src2.nativeObj, dst.nativeObj, code);

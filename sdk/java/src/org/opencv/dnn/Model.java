@@ -256,6 +256,15 @@ public class Model {
     }
 
 
+    //
+    // C++:  Model cv::dnn::Model::enableWinograd(bool useWinograd)
+    //
+
+    public Model enableWinograd(boolean useWinograd) {
+        return new Model(enableWinograd_0(nativeObj, useWinograd));
+    }
+
+
     @Override
     protected void finalize() throws Throwable {
         delete(nativeObj);
@@ -304,6 +313,9 @@ public class Model {
 
     // C++:  Model cv::dnn::Model::setPreferableTarget(dnn_Target targetId)
     private static native long setPreferableTarget_0(long nativeObj, int targetId);
+
+    // C++:  Model cv::dnn::Model::enableWinograd(bool useWinograd)
+    private static native long enableWinograd_0(long nativeObj, boolean useWinograd);
 
     // native support for java finalize()
     private static native void delete(long nativeObj);
