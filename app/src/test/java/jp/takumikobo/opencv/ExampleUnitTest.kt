@@ -1,4 +1,4 @@
-package jp.inc.arouse.opencv
+package jp.takumikobo.opencv
 
 import org.junit.Test
 
