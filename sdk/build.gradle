@@ -93,7 +93,6 @@ apply plugin: 'maven-publish'
 apply plugin: 'kotlin-android'
 
 def openCVersionName = "4.9.0"
-def openCVersionCode = ((4 * 100 + 9) * 100 + 0) * 10 + 0
 
 println "OpenCV: " +openCVersionName + " " + project.buildscript.sourceFile
 
@@ -189,7 +188,7 @@ publishing {
     repositories {
         maven {
             name = 'myrepo'
-            url = "${project.buildDir}/repo"
+            url = "${project.layout.buildDirectory}/repo"
         }
     }
 }

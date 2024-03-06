@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'jp.inc.arouse.opencv'
+    namespace 'jp.takumikobo.opencv'
     compileSdk 34
 
     defaultConfig {
-        applicationId "jp.inc.arouse.opencv"
+        applicationId "jp.takumikobo.opencv"
         minSdk 29
         targetSdk 34
         versionCode 1
